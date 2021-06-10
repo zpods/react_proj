@@ -1,10 +1,12 @@
 import React from 'react';
-import RoutesComponent from './routes/RoutesComponent'
+import ShopNavBar from '../src/components/header/navbar/ShopNavBar';
+import RoutesComponent from './routes/RoutesComponent';
 import { Fragment } from 'react';
 
 function App() {
   return (
     <Fragment>
+      <ShopNavBar></ShopNavBar>
       <RoutesComponent></RoutesComponent>
     </Fragment>
   );
