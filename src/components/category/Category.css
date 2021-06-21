@@ -1,0 +1,22 @@
+.cat_name {
+    color: brown;
+    text-align: center;
+    padding-bottom: 5px;
+    
+}
+.cat_name:hover {
+    text-decoration-line: underline;
+}
+.cat-div {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: whitesmoke;
+    padding-left: 5px;
+    
+}   
+
+.cat-row {
+    margin-bottom: 5px;
+}
+
+

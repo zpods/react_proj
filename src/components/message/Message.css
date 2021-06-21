@@ -1,0 +1,12 @@
+.message {
+    width: 100%;
+    height: 30px;
+    background-color: green;
+    color: gainsboro;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.Rejected {
+    background-color: red;
+}
