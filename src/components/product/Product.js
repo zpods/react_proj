@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from 'react';
+import React from 'react';
 import Image from '../image/Image';
-import Button from '../button/Button';
 import { useDispatch } from 'react-redux'
 import { cartActions } from '../../reduxSlices/cartSlice/cartSlice';
+import { useHistory } from 'react-router-dom';
 import './Product.css';
 
 function Product (props) {
@@ -14,17 +14,33 @@ function Product (props) {
     const image_src = props.product.images[0].src;
     const image_alt = props.product.images[0].description;
     const product = props.product;
+    const history = useHistory();
+    const product_id = props.product.product_id;
 
-    const addItemToCartHandler = (e) => {
+
+    const productDetailskHandler = (product_id) => {
+        let path = `/product/${product_id}`; 
+        history.push(path);
+    }
+
+    const addItemToCartHandler = () => {
         dispatch(cartActions.addItemAction(product));
    };
 
+   
+
     return(
         <div  className="product-div">
-            <p className="product-title" title="product name">{name}</p>
-            <Image src={image_src} alt={image_alt}></Image>
-            <p className="product-desc">{short_desc}</p>
-            <button className="button" onClick={addItemToCartHandler}>Add To Cart</button>      
+            <p onClick={() => productDetailskHandler(product_id)} className="product-title" title="product name">{name}</p>
+            <div className="product-sub-div">
+                <Image src={image_src} alt={image_alt}></Image>               
+            </div>
+            <div className="button-text-parent">
+               <div className="text-div"><p onClick={() => productDetailskHandler(product_id)} className="product-desc">{short_desc}</p></div> 
+                
+                    <div className="button-div"><button className="button" onClick={addItemToCartHandler}>Add To Cart</button></div>
+                      
+            </div>
         </div>
     )
 }

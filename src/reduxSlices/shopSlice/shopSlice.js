@@ -15,14 +15,12 @@ const  shopSlice = createSlice({
     name: "products",
     initialState: {
        products: [],
-       loading: "idle",
        error: "",
-       hideMessage: false,
     },
    reducers: {
-      hide: (state, action)=> {
-            state.hideMessage = action.payload.payload         
-      }
+      hideMessage: (state, action)=> {
+         state.hide_message = action.payload;
+      },
    },
    extraReducers: (builder) => {
       builder
@@ -31,7 +29,7 @@ const  shopSlice = createSlice({
          state.loading = 'loaded';
       })
       .addCase(fetchProducts.rejected, (state, action) => {
-         state.error = action.error.message;
+         state.error = action.payload.error;
          state.loading = 'error';
       })
       .addCase(fetchProducts.pending, (state, action) => {

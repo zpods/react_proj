@@ -1,6 +1,11 @@
-ul li a.nav-link {
-  color: whitesmoke !important;
+ 
+.navbar-nav > .nav-item > a {
+  color: honeydew !important;
 }
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.7)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E") !important;
+  }
 nav.navbar > div.container > a.navbar-brand {
   color: whitesmoke ;
 }
@@ -8,6 +13,13 @@ div.container > div.collapse > ul + span.navbar-text {
   color: whitesmoke ;
   border: 1px solid whitesmoke;
   padding: 5px;
+  cursor: pointer;
+}
+div.navbar-collapse + span.navbar-text {
+  color: whitesmoke;
+  border: 1px solid whitesmoke;
+  padding: 5px 4px;
+  border-radius: 2px;
   cursor: pointer;
 }
 .shop-search {
@@ -102,3 +114,13 @@ input.shop-search {
 .logout {
   cursor: pointer;
 }
+.navbar-togg {
+  position:absolute;
+  right: 0px;
+  top:  0px;
+}
+.navbar {
+  z-index: 99999 !important;
+  min-height: 50px;
+}
+

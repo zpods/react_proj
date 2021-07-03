@@ -2,8 +2,13 @@ import React from 'react';
 import './Button.css';
 
 function Button (props) {
+
+    function buttonClickHandler(){
+        props.buttonClick();
+    }
+
     return (
-        <button className="button">{props.children}</button>
+        <button onClick={buttonClickHandler} className="button">{props.children}</button>
     )
 }
 

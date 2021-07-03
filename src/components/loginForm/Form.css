@@ -16,7 +16,8 @@
   width: 23%;
   margin-top: 10px; 
   background-color: #333333;
-  color: #ffffff
+  color: #ffffff;
+  cursor: pointer;
 }
 .buttons > button:first-child {
   margin-right: 4.06%;
@@ -24,4 +25,16 @@
 .form-dimension {
   height: 65vh;
   padding: 70px;
+}
+
+@media only screen and (max-width: 991px) {
+  form > div.form > input {
+    width: 100%;
+  }
+  .buttons > button:first-child {
+    margin-right: 9.96%;
+  }
+  form > div.buttons > button {
+    width: 45%;
+  }
 }

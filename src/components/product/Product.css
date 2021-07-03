@@ -1,11 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
-
+.button-text-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+.text-div {
+    height:50%;
+}
+.button-div {
+    padding-top: 10px;
+    width: 100%;
+    height:50%;
+}
 .product-title {
     font-family: 'Roboto', sans-serif;
     text-align: center;
     font-size: 1.4rem;
     font-weight: bold;
     margin: 0px;
+    cursor: pointer;
 }
 
 .product-title:hover {
@@ -18,19 +32,34 @@
     font-size: 0.8rem;
     font-family: 'Roboto', sans-serif;
     font-weight: 800;
+    cursor: pointer;
 }
 
 .product-div {
+    text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
     height: 250px;
     border: 2px solid black;
     padding: 4px;
 }
 
+.product-sub-div {
+    
+    width: 170px;
+    height: 100px;
+}
+
+.product-desc {
+    display:flexbox;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
 .button {
     font-weight: 600;
+    width: 90%;
 }
 
 .button:hover {
@@ -38,3 +67,64 @@
     color: whitesmoke;
     border: 2px solid gray;
 }
+
+/* change padding for col-lg-2 */
+.col-sm-6.col-md-3.col-lg-2 {
+    padding: 2px;
+}
+
+@media only screen and (max-width: 1199px) {
+    .image{
+        width: 120px;
+        height: auto;
+    }
+    .product-sub-div {
+        width: 120px;
+        height: auto;
+    }
+    .product-div {
+        height: 250px;
+    }
+  }
+
+@media only screen and (max-width: 991px) {
+    .image{
+        width: 120px;
+        height: auto;
+    }
+    .product-sub-div {
+        width: 120px;
+        height: auto;
+    }
+    .product-div {
+        height: 300px;
+    }
+  }
+
+@media only screen and (max-width: 767px) {
+    .image{
+        width: 240px;
+        height: auto;
+    }
+    .product-sub-div {
+        width: 240px;
+        height: auto;
+    }
+    .product-div {
+        height: 350px;
+    }
+  }
+
+@media only screen and (max-width: 575px) {
+    .image{
+        width: 500px;
+        height: auto;
+    }
+    .product-sub-div {
+        width: 500px;
+        height: auto;
+    }
+    .product-div {
+        height: auto;
+    }
+  }

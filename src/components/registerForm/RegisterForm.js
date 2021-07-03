@@ -3,29 +3,51 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container } from 'reactstrap';
 import { Form, Field } from 'react-final-form';
 import { Redirect } from "react-router";
-import { registerUser } from '../../reduxSlices/registerSlice/registerSlice';
+import { registerUser } from '../../reduxSlices/formSlice/formSlice';
+import { messageActions } from '../../reduxSlices/messageSlice/messageSlice';
+import { formActions } from '../../reduxSlices/formSlice/formSlice';
+import { clearMessage, resetMessage, setProperMessage } from '../../utils/utils';
 
 
 
 function RegisterForm () {    
 
-   const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-   const logged_in = useSelector((state) => state.register.login );
+    const logged_in = useSelector((state) => state.forms.login);
+    const message_error = useSelector((state) => state.forms.error);
+    const message_success = useSelector((state) => state.forms.loading);
+    const response_message = useSelector((state) => state.forms.response_message);
+    const is_login = useSelector((state) => state.forms.login);
+    const show_message = useSelector( (state) => state.message.show_message);
+    let message_email = '';
+    let message_password = '';
 
-    const  message_email = '';
-    const  message_password = '';
+  
+    React.useEffect(() => {
+      setProperMessage(dispatch, messageActions, message_error, response_message, is_login);
+                 
+    }, [dispatch, message_success, message_error, is_login, response_message]);
+  
+    React.useEffect( () => {
+        const timer = setTimeout(()=>{
+            resetMessage(dispatch, messageActions, formActions);
+        }, 7500)
+        return () => clearTimeout(timer);
+    }, [dispatch, show_message])
 
-    function message_reset(){
+    function formMessageReset(){
         message_email = '';
         message_password = '';
     }
 
     function onSubmit( values ){
+        clearMessage(dispatch, messageActions);
         dispatch(registerUser(
             { 'name': values.name, 'email': values.email,
             'password': values.password, 'password_confirmation': values.confirm }
-        ));     
+        )); 
+        resetMessage(dispatch, messageActions, formActions);  
     }
        
     return (
@@ -100,7 +122,7 @@ function RegisterForm () {
                                 </button>
                                 <button
                                 type="button"
-                                onClick={() => {form.reset(); message_reset();}}
+                                onClick={() => {form.reset(); formMessageReset();}}
                                 disabled={submitting || pristine}
                                 >
                                 Reset

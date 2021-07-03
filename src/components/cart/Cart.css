@@ -36,3 +36,95 @@
     font-weight: 900;
     margin-left: 5px;
 }
+
+@media only screen and (min-width: 1399px) {
+    .expanded-cart {
+        left: -25vw;
+        top: 9px;
+        width: 40vw;
+    }
+    div.cart-padding.row > div.cart-font.col-4 + div.col-4 > img.image {
+        width: 5vw;
+    }
+}
+@media only screen and (max-width: 1399px) {
+    .expanded-cart {
+        left: -30vw;
+        top: 9px;
+        width: 40vw;
+    }
+    div.col-4 > img.image {
+        width: 150px;
+    }
+}
+
+
+@media only screen and (max-width: 1199px) {
+    .expanded-cart {
+        left: -39vw;
+        top: 9px;
+        width: 50vw;
+    }
+}
+
+
+@media only screen and (max-width: 991px) {
+    .expanded-cart {
+        left: -35-6vw;
+        top: 9px;
+        width: 50vw;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .navbar-togg {
+        margin-top: 4px;
+      }
+      .cart-pos > .cart-div  {
+        justify-content: center;
+        min-width: 130px;
+      }
+    .cart-pos {
+        display: flex;
+        justify-content: center;
+        min-width: 140px;
+        margin-top: 7px;
+        position: absolute;
+        top: 0px;
+        right: 40%;
+        z-index: 999;
+    }
+    .expanded-cart {
+        left: -55vw;
+        top: 40px;
+        width: 90Vw;
+    }
+    div.col-4 > img.image {
+        width: 150px;
+    }
+    div.cart-padding > div.col-4 + div.col-4 {
+        font-size: 1.8rem;
+    }
+    div.cart-padding > div.cart-font {
+        font-size: 1.8rem;
+    }
+    div.cart-padding > div.col-4 {
+        font-size: 1.8rem;
+    }
+    div.cart-padding > div.center-text {
+        font-size: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .cart-pos {
+        position: absolute;
+        top: 0px;
+        right: 35%;
+    }
+    .expanded-cart {
+        left: -55vw;
+        top: 40px;
+        width: 85Vw;
+    }
+}

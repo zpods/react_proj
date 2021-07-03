@@ -3,45 +3,46 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Container } from 'reactstrap';
 import { Form, Field } from 'react-final-form';
 import { Redirect } from "react-router";
-import { signupUser } from '../../reduxSlices/loginSlice/loginSlice';
+import { signupUser } from '../../reduxSlices/formSlice/formSlice';
+import { messageActions } from '../../reduxSlices/messageSlice/messageSlice';
+import { formActions } from '../../reduxSlices/formSlice/formSlice';
+import { clearMessage, resetMessage, setProperMessage } from '../../utils/utils';
 import './Form.css';
-import axios from 'axios'
-
-
-
-
-
-
 function LoginFrom () {
 
   const dispatch = useDispatch();
 
-  const logged_in = useSelector((state) => state.login.login);
+  const logged_in = useSelector((state) => state.forms.login);
+  const message_error = useSelector((state) => state.forms.error);
+  const response_message = useSelector((state) => state.forms.response_message);
+  const is_login = useSelector((state) => state.forms.login);
+  const show_message = useSelector( (state) => state.message.show_message);
+  const type_message = useSelector( (state) => state.message.type_message);
+  let message_email = '';
+  let message_password = '';
 
-   console.log(logged_in); 
-  
+  React.useEffect(() => {
+    setProperMessage(dispatch, messageActions, message_error, response_message, is_login);            
+  }, [dispatch, message_error, response_message, is_login]);
 
+  React.useEffect(()=>{
+    const timer = setTimeout(()=>{
+      resetMessage(dispatch, messageActions, formActions);
+    }, 7500);
+    return () => clearTimeout(timer);
+  }, [dispatch, type_message, show_message])
 
- 
-
-  const message_email = '';
-  const message_password = '';
-
-  function message_reset() {
+  function form_message_reset() {
     message_email = '';
     message_password = '';
   }
 
-   function onSubmit (values) {
+  function onSubmit (values) {
+    clearMessage(dispatch, messageActions);
     dispatch(signupUser({email: values.email, password: values.password}));
-    //props.checkCartIfProductsInCartExists();
-  }
-
-  function messageWhenAlreadyLogin(){
-    message_email = `You are already login as    logout first` ;
     
+    resetMessage(dispatch, messageActions, formActions);
   }
-
 
   function renderLoginForm(){
     return (
@@ -94,7 +95,7 @@ function LoginFrom () {
                   </button>
                 <button
                   type="button"
-                  onClick={() => { form.reset(); message_reset(); }}
+                  onClick={() => { form.reset(); form_message_reset(); }}
                   disabled={submitting || pristine}
                 >
                   Reset
@@ -106,7 +107,6 @@ function LoginFrom () {
       </Container>
     );
   }
-
   
   return (
     <div>

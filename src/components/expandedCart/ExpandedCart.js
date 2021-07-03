@@ -3,15 +3,22 @@ import { useSelector, useDispatch } from 'react-redux';
 import { cartActions } from '../../reduxSlices/cartSlice/cartSlice';
 import { Row, Col } from 'reactstrap';
 import Image from '../image/Image';
+import { sendCartToBackend } from '../../reduxSlices/cartSlice/cartSlice';
+import { useHistory } from 'react-router-dom';
+
 import './ExpandedCart.css';
 
 function ExpandedCart (props) {
 
     const dispatch = useDispatch();
 
-    const cart = props.cart;
+    const cart = useSelector( (state) => state.cart.cart_items );
     const cartTotalPrice = props.cartTotalPrice;
-    const cartTotalOrdered = useSelector((state)=>state.cart.total_ordered);
+    const cartTotalOrdered = useSelector( (state) => state.cart.total_ordered );
+    const login = useSelector( (state) => state.forms.login );
+    const token = useSelector( (state) => state.forms.token );
+    const history = useHistory();
+    let g = 0;
 
     function clearCartHandler(){
         dispatch(cartActions.clearCart());
@@ -24,11 +31,25 @@ function ExpandedCart (props) {
         dispatch(cartActions.addItemAction(item));
     }
 
-    function sendCartDataToBackend(){
-        //dispatch();
+    function sendCartDataToBackendHandler({cart, token}){
+        if(login){
+            dispatch(sendCartToBackend({cart, token}));
+        }else{
+            let path = `/login`; 
+            history.push(path);
+        }
+        
     }
 
-    console.log(cart);
+
+    function checkoutOrLoginText(){
+        if(login){
+            return 'Save Cart';
+        }else{
+            return 'Login first';
+        }
+    }
+  
     return (
         <div  className="expanded-cart"> 
             <Row xs="12" className="cart-padding cart-font">
@@ -42,7 +63,7 @@ function ExpandedCart (props) {
                         const image_src = item.images[0].src;
                         const image_desc = item.images[0].description;
                         return (
-                        <div>
+                        <div key={'expan_cart' + g++}>
                             <Row xs="12" className="cart-padding">
                                 <Col xs="4" className="cart-font">{item.name}</Col>
                                 <Col xs="4"><Image src={image_src} alt={image_desc}></Image></Col>
@@ -58,14 +79,18 @@ function ExpandedCart (props) {
                     })
                 }
             <Row xs="12" className="cart-padding">
-                <Col xs="6" className="center-text">Qunatity: {cartTotalOrdered}</Col>
+                <Col xs="6" className="center-text">Quantity: {cartTotalOrdered}</Col>
                 <Col xs="6" className="center-text">Total Price: {cartTotalPrice}</Col>
             </Row>
             <div className="hr-cart"></div>
             <div className="hr-cart"></div>
             <Row xs="12" className="cart-padding">
-                <Col xs="6" className="center-text"><button onClick={sendCartDataToBackend} className="button cart-btn">Checkout</button></Col>
-                <Col xs="6" className="center-text"><button onClick={clearCartHandler} className="button cart-btn">Clear Cart</button></Col>
+                <Col xs="6" className="center-text">
+                    <button onClick={() => sendCartDataToBackendHandler({cart, token}) } className="button cart-btn">{checkoutOrLoginText()}</button>
+                </Col>
+                <Col xs="6" className="center-text">
+                    <button onClick={clearCartHandler} className="button cart-btn">Clear Cart</button>
+                </Col>
             </Row>        
         </div>
     );
