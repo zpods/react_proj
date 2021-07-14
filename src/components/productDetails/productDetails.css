@@ -1,0 +1,15 @@
+.details-img {
+    padding: 20px;    
+}
+.details-title {
+    margin: 20px;
+    text-align: center;
+}
+.details-description {
+    padding: 30px;
+}
+
+.image-details {
+    width: 200px;
+    height: 100px;
+}

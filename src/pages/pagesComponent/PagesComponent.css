@@ -1,0 +1,22 @@
+.card-body-height {
+    height: 450px;
+    
+    
+}
+.card-body-featured {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.button-none-featured {
+    justify-content: flex-end;
+  display: flex;
+}
+.button-none-featured-parent {
+    justify-content: space-between;
+  flex-direction: column;
+  display: flex;
+  height: 350px
+}

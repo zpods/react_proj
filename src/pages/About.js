@@ -27,7 +27,8 @@ const About = () => (
             <li>Reactstrap: boostrap library prepared for react</li>
             <li>Axios: for making http request to send and recevie data form backend</li>
             <li>React-final-form: library for development of login and register pages for react</li>
-            <li>For development React application were used also addons for browser React Developer Tool and Redux Dev Tools</li>
+            <li>For development React application were used also addons for browser: React Developer Tool and Redux Dev Tools</li>
+            <li>Whole application was built according Responsive Web Design rules</li>
           </ul>
           <li>Backend:</li>
           <ul>
@@ -60,10 +61,10 @@ const About = () => (
              </li>
              <li>
                Error bar with animations slowly appears frontend showing Login or Register errors.
-             </li>
+             </li>           
              <li>
-               Search ability to search products of specified name in backend.
-              </li>
+               Following RWD rules.
+             </li>
           </ul>
         <p className="about-text">
           Laravel application have following features:
@@ -85,7 +86,7 @@ const About = () => (
             Search Controller responding with found products to react frontend.
           </li>
           <li>
-            Custom routes for application.
+            Custom api routes for application Api and one web route for serving react app to user.
           </li>
         </ul>
       </Col>

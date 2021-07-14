@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { SITE_URL } from '../../constants/constants';
 import qs from 'qs';
 
 export const sendCartToBackend = createAsyncThunk(
@@ -16,7 +17,7 @@ export const sendCartToBackend = createAsyncThunk(
           data: qs.stringify({
             cart: cart
           }),
-          url : 'http://localhost:8000/api/cart',
+          url : SITE_URL + '/api/cart',
         }
       )
       return response.data;
@@ -36,7 +37,7 @@ export const sendCartToBackend = createAsyncThunk(
               'Content-Type': 'application/x-www-form-urlencoded',
               'Authorization': 'Bearer ' +token
             },
-            url : 'http://localhost:8000/api/cart',
+            url : SITE_URL + '/api/cart',
           }
         )
         return response.data;
